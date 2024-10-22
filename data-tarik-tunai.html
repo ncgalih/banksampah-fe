@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Nasabah</title>
+  <title>Data Tarik Tunai</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -19,7 +19,7 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="data-nasabah.html">Data Nasabah</a>
+            <a class="nav-link" href="data-nasabah.html">Data Nasabah</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="data-transaksi.html">Data Transaksi</a>
@@ -28,7 +28,7 @@
             <a class="nav-link" href="daftar-nasabah-baru.html">Daftar Nasabah Baru</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="data-tarik-tunai.html">Tarik Tunai</a>
+            <a class="nav-link active" href="data-tarik-tunai.html">Tarik Tunai</a>
           </li>
         </ul>
       </div>
@@ -36,39 +36,43 @@
   </nav>
 
   <div class="container mt-4">
-    <h2>Data Nasabah</h2>
+    <h2>Data Tarik Tunai</h2>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>No</th>
+          <th>Waktu</th>
           <th>Nama</th>
           <th>Alamat</th>
-          <th>Saldo</th>
-          <th>UID RFID</th>
+          <th>Nominal</th>
+          <th>Status</th>
+          <th>Aksi</th>
         </tr>
       </thead>
-      <tbody id="nasabah-list">
-        <!-- Data nasabah akan dimuat di sini -->
+      <tbody id="transaksi-list">
+        <!-- Data transaksi akan dimuat di sini -->
       </tbody>
     </table>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Ambil data nasabah dari backend
-    fetch('http://localhost:3000/pengelola/nasabah')
+    // Ambil data transaksi dari backend
+    fetch('http://localhost:3000/pengelola/tarik')
       .then(response => response.json())
       .then(data => {
-        const nasabahList = document.getElementById('nasabah-list');
-        data.forEach((nasabah, index) => {
+        const transaksiList = document.getElementById('transaksi-list');
+        data.forEach((transaksi, index) => {
           const row = `<tr>
             <td>${index + 1}</td>
-            <td>${nasabah.nama}</td>
-            <td>${nasabah.alamat}</td>
-            <td>${nasabah.saldo}</td>
-            <td>${nasabah.uid_rfid}</td>
+            <td>${new Date(transaksi.created_at).toLocaleDateString()}</td>
+            <td>${transaksi.nama}</td>
+            <td>${transaksi.alamat}</td>
+            <td>${transaksi.nominal}</td>
+            <td>${transaksi.status}</td>
+            <td>Acc - Tolak</td>
           </tr>`;
-          nasabahList.innerHTML += row;
+          transaksiList.innerHTML += row;
         });
       })
       .catch(error => console.error('Error:', error));
