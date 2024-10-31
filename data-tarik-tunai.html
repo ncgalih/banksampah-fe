@@ -71,7 +71,7 @@
 
     function tolakTarikTunai(id){
       console.log("tolak tarik tunai")
-      fetch('https://banksampah-be.vercel.app/tolak-tarik-tunai/' + id, {
+      fetch('https://banksampah-be.vercel.app/pengelola/tolak-tarik-tunai/' + id, {
         method: "POST"
       })
         .then(response => response.json())
