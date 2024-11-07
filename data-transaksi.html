@@ -57,6 +57,17 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    function cancelSetor(id){
+      console.log("setor")
+      fetch('https://banksampah-be.vercel.app/pengelola/cancel-setor/' + id, {
+        method: "POST"
+      })
+        .then(response => response.json())
+        .then(res => {
+          location.reload();
+        })
+    }  
+
     // Ambil data transaksi dari backend
     fetch('https://banksampah-be.vercel.app/pengelola/transaksi')
       .then(response => response.json())
@@ -71,6 +82,14 @@
             <td>${transaksi.harga_jenis}</td>
             <td>${transaksi.kredit}</td>
             <td>${new Date(transaksi.created_at).toLocaleDateString()}</td>
+            <td>
+              ${transaksi.kredit == 0 ? "" :
+                `
+                <button class="btn btn-danger" onclick="cancelSetor('${transaksi._id}')">
+                  Tolak
+                </button>`
+              }
+            </td>
           </tr>`;
           transaksiList.innerHTML += row;
         });
