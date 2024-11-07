@@ -46,6 +46,8 @@
           <th>Alamat</th>
           <th>Nominal</th>
           <th>Status</th>
+          <th>Bank</th>
+          <th>No Rekening</th>
           <th>Aksi</th>
         </tr>
       </thead>
@@ -92,6 +94,8 @@
             <td>${transaksi.alamat}</td>
             <td>${transaksi.nominal}</td>
             <td>${transaksi.status}</td>
+            <td>${transaksi.bank}</td>
+            <td>${transaksi.no_rekening}</td>
             <td>
               ${transaksi.status == "pending" 
                 ?
