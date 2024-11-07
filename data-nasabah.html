@@ -45,6 +45,8 @@
           <th>Alamat</th>
           <th>Saldo</th>
           <th>UID RFID</th>
+          <th>Bank</th>
+          <th>Rekening</th>
         </tr>
       </thead>
       <tbody id="nasabah-list">
@@ -67,6 +69,8 @@
             <td>${nasabah.alamat}</td>
             <td>${nasabah.saldo}</td>
             <td>${nasabah.uid_rfid}</td>
+            <td>${nasabah.bank}</td>
+            <td>${nasabah.no_rekening}</td>
           </tr>`;
           nasabahList.innerHTML += row;
         });

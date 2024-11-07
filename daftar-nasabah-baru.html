@@ -50,6 +50,14 @@
         <label for="uid_rfid" class="form-label">UID RFID</label>
         <input type="text" class="form-control" id="uid_rfid" required>
       </div>
+      <div class="mb-3">
+        <label for="bank" class="form-label">Nama Bank</label>
+        <input type="text" class="form-control" id="bank" required>
+      </div>
+      <div class="mb-3">
+        <label for="no_rekening" class="form-label">Rekening</label>
+        <input type="text" class="form-control" id="no_rekening" required>
+      </div>
       <button type="submit" class="btn btn-primary">Daftar</button>
     </form>
   </div>
@@ -63,13 +71,16 @@
       const nama = document.getElementById('nama').value;
       const alamat = document.getElementById('alamat').value;
       const uid_rfid = document.getElementById('uid_rfid').value;
+      const bank = document.getElementById('bank').value;
+      const no_rekening = document.getElementById('no_rekening').value;
+      
 
       fetch('https://banksampah-be.vercel.app/pengelola/nasabah', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nama, alamat, uid_rfid })
+        body: JSON.stringify({ nama, alamat, uid_rfid, bank, no_rekening })
       })
       .then(response => response.json())
       .then(data => {
